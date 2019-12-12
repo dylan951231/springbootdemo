@@ -1,5 +1,6 @@
 package com.xu.springbootdemo;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,6 +9,6 @@ public class SpringbootdemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootdemoApplication.class, args);
+        System.out.println("axsaxas");
     }
-
 }
