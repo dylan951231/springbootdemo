@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xu.springbootdemo.authorize.dao.AuthorizDao" >
+    <select id="getAllPermissions" resultType="com.xu.springbootdemo.authorize.domain.Permission">
+       select * from SYS_PERMISSIONS
+    </select>
+
+    <select id="getUserAuthorize" parameterType="java.lang.Integer" resultType="com.xu.springbootdemo.authorize.domain.Permission">
+        SELECT
+            p.PERMISSION_GROUP,
+            p.PERMISSION_ID,
+            p.PERMISSION_NAME,
+            p.DESC
+        FROM
+            INFO_USER u
+            LEFT JOIN SYS_ROLE r ON  u.USER_ROLE = r.ROLE_ID
+            LEFT JOIN SYS_ROLE_PERMISSION sr ON r.ROLE_ID = sr.ROLE_ID
+            LEFT JOIN SYS_PERMISSIONS p ON sr.PERMISSION_ID = p.PERMISSION_ID
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id != 0 ">
+                and u.USER_ID =#{id}
+            </if>
+        </trim>
+    </select>
+    
+    <delete id="deleteRolePremissionByRoleId" parameterType="java.lang.Integer" >
+        delete from SYS_ROLE_PERMISSION where ROLE_ID=#{userRole}
+    </delete>
+
+    <insert id="insertIntoRolePremissionByRole">
+        insert into SYS_ROLE_PERMISSION (ROLE_ID,PERMISSION_ID) values
+        <foreach collection="list" item="item" separator=",">
+            (#{userRole},#{item})
+        </foreach>
+    </insert>
+</mapper>

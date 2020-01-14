@@ -13,7 +13,7 @@ public class WebConfig extends WebMvcConfigurationSupport  {
     public void addInterceptors(InterceptorRegistry registry){
 
              ///自定义一个拦截器，添加到配置中
-            registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**");
+           // registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**");
     }
     //自定义资源映射路径
     @Override

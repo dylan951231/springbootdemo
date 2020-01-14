@@ -1,18 +1,40 @@
 package com.xu.springbootdemo.domain;
 
+import java.util.List;
+
 public class User {
-    private Integer id;
+    private Integer userId;
 
     private String userName;
 
     private String userPassword;
 
-    public Integer getId() {
-        return id;
+    private Integer userRole;
+
+    public Integer getUserRole() {
+        return userRole;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserRole(Integer userRole) {
+        this.userRole = userRole;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    private List<Book> book;
+
+    public Integer getId() {
+        return userId;
+    }
+
+    public void setId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {

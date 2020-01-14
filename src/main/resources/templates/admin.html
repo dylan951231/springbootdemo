@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <script src="../static/js/jquery.min.js"></script>
+</head>
+<body>
+    <h1></h1>
+    <shiro:hasPermission name="user:authorize"> <a href="/user/authorize">角色权限管理</a></shiro:hasPermission>
+<hr>
+   <div id="content">
+
+   </div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        $.ajax({
+            url:'/authorize/getUserAuthorizeDetail',
+            type:'post',
+            dataType:'json',
+            success: function(data){
+                console.log(data)
+                var html ='';
+                for(var key in data){
+                    if(key=="用户管理"){
+                        for(var i =0 ;i<data[key].length;i++){
+                            console.log(data[key][i])
+                            html+='<shiro:hasPermission name="'+data[key][i].permissionName+'"> <a href="/user/authorize">'+data[key][i].desc+'</a></shiro:hasPermission><br>'
+                        }
+                    }else if(key=="商品管理"){
+                        for(var i =0 ;i<data[key].length;i++) {
+                            console.log(data[key][i])
+                            if (data[key].length != 0) {
+                                html += '<shiro:hasPermission name="' + data[key][i].permissionName + '"> <a href="/user/authorize">' + data[key][i].desc + '</a></shiro:hasPermission><br>'
+                            }
+                        }
+                    }
+                }
+                console.log(html)
+                $("#content").append(html);
+            }
+        })
+    })
+
+</script>
+
+</html>

@@ -30,9 +30,13 @@ public class MyInterceptor extends HandlerInterceptorAdapter {
             System.out.println(request.getServletPath()); ///user/1/xujialiang
             System.out.println(request.getMethod());     //GET
             System.out.println("-------------------------");
-            String[] arr = {"/login","/","/error"};
+
+         //先不使用
+         //   String[] arr = {"/login","/","/error"};
+
+
             ArrayList<String> urls = new ArrayList<>();
-            urls.addAll(Arrays.asList(arr));
+        //    urls.addAll(Arrays.asList(arr));
             if(urls.contains(uri)){
                 return  true;
             }else {

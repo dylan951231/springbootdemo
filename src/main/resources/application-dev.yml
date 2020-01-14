@@ -1,15 +1,19 @@
-
 spring:
   datasource:
     username: root
     password: xjl13633792287
     #useUnicode=true&characterEncoding=UTF-8 mysql适用gbk编码，系统使用utf8方便他们之间的转换
     #useSSL 是为了在传输数据的时候，1.保数据发送到正确的服务器，2.防止数据传输途中被窃取使用，3.验证数据在传输过程中是否丢失
-    url: jdbc:mysql://localhost:3306/springbootdemo?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://123.206.68.9:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 127.0.0.1
+    database: 0
+    port: 6379
+    password: 123456
 mybatis:
-  mapper-locations: classpath:mapper/*
+  mapper-locations: classpath:mapper/*/*
   #实体包，使用简称
   #type-aliases-package:
   configuration:
